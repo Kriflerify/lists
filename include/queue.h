@@ -19,6 +19,12 @@ public:
     Node<T>* getroot() const;
 	Node<T>* insert(T val);
 	Node<T>* insert(T val, Node<T>* index);
+
+    Node<T>* insert(T* val, int len);
+    Node<T>* insert(T* val, int len, Node<T>* index);
+
+    //Node<T>* insert(Node<T>* nod, int len);
+    //Node<T>* insert(Node<T>* nod, int len, Node<T>* index);
 	void remove(Node<T>* index);
     Node<T>* find(T val);
     Node<T>* find(T val, Node<T>* start);

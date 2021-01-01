@@ -8,12 +8,16 @@ EXE-TESTS = $(addprefix $(BIN_DIR)/test-,$(TESTS))
 
 SUBDIRSCLEAN = $(addsuffix clean, $(SRC_DIR) $(OBJ_DIR) $(BIN_DIR))
 
-all: test-all
+all: crab
+
+crab: $(OBJ_DIR)/crab.o $(OBJ_DIR)/queue.o $(OBJ_DIR)/node.o
+	$(CXX) -o $@ $^
 
 test-all: $(EXE-TESTS)
+	$(BIN_DIR)/test-queue
 
 $(BIN_DIR)/test-%: $(OBJ_DIR)/%.o $(OBJ_DIR)/test-%.o $(OBJ_DIR)/node.o
-	$(CXX) -o $@ $?
+	$(CXX) -o $@ $^
 
 $(OBJ_DIR)/test-%.o: $(SRC_DIR)/test-%.cpp
 	$(CXX) $< -I $(INCL_DIR) -c -o $@

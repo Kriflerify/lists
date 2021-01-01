@@ -21,9 +21,9 @@ Node<T>::Node(T val, Node<T>* chl, Node<T>* pred)
 {
     value = val;
     next = chl;
-    chl->prev = this;
+//    chl->prev = this;
     prev = pred;
-    pred->next = this;
+//    pred->next = this;
 }
 
 

@@ -53,11 +53,15 @@ template <typename T>
 Node<T>* Queue<T>::insert(T val, Node<T>* index) {
 	Node<T>* ret;
     if (size==0) {
-        root = new Node<T>(val, root);
+        root = new Node<T>(val, root, root);
+        root->next = root;
+        root->prev = root;
         size++;
         return root;
     } else {
         Node<T>* newnode = new Node<T>(val, index->next, index);
+        index->next->prev = newnode;
+        index->next = newnode;
         size++;
         return newnode;
     }
@@ -65,9 +69,29 @@ Node<T>* Queue<T>::insert(T val, Node<T>* index) {
 
 
 template <typename T>
+Node<T>* Queue<T>::insert(T* val, int len) {
+	return insert(val, len, root);
+}
+
+
+template <typename T>
+Node<T>* Queue<T>::insert(T* val, int len,  Node<T>* index) {
+    Node<T>* a = index;
+    T* v = val;
+    for (int i=0; i<len; i++) {
+        a = insert(v[i], a);
+    }
+
+    return a;
+}
+
+template <typename T>
 void Queue<T>::remove(Node<T>* index) {
     index->prev->next = index->next;
     index->next->prev = index->prev;
+    if (index == root) {
+        root = index->next;
+    }
     delete index;
     size--;
 }
