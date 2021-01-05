@@ -132,7 +132,7 @@ std::ostream& operator<<(std::ostream &os, Queue<T> const &q) {
     Node<T>* cur = q.getroot();
     
     for (int i=0; i<q.getsize(); i++) {
-        os  << cur->value;
+        os  << cur->value << ", ";
         cur = cur->next;
     }
 

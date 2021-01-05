@@ -3,7 +3,7 @@ OBJ_DIR = obj
 INCL_DIR = include
 BIN_DIR = bin
 
-TESTS = queue
+TESTS = listqueue
 EXE-TESTS = $(addprefix $(BIN_DIR)/test-,$(TESTS))
 
 SUBDIRSCLEAN = $(addsuffix clean, $(SRC_DIR) $(OBJ_DIR) $(BIN_DIR))
@@ -14,7 +14,7 @@ crab: $(OBJ_DIR)/crab.o $(OBJ_DIR)/queue.o $(OBJ_DIR)/node.o
 	$(CXX) -o $@ $^
 
 test-all: $(EXE-TESTS)
-	$(BIN_DIR)/test-queue
+	$(BIN_DIR)/test-listqueue
 
 $(BIN_DIR)/test-%: $(OBJ_DIR)/%.o $(OBJ_DIR)/test-%.o $(OBJ_DIR)/node.o
 	$(CXX) -o $@ $^
