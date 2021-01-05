@@ -35,8 +35,11 @@ Node<int>* Listqueue::append(int val){
     }
 
     if (root == nullptr) {
-
-    }
+        root = new Node<int>*(val);
+        root->next = root;
+        tail = root;
+    } else {
+        tail
     return NULL;
 }
 
